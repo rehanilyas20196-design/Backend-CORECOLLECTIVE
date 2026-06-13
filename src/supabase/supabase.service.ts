@@ -34,7 +34,8 @@ export class SupabaseService {
   }
 
   get auth() {
-    return this.supabase?.auth;
+    if (!this.supabase) throw new Error('Supabase not initialized — check SUPABASE_URL and SUPABASE_ANON_KEY env vars');
+    return this.supabase.auth;
   }
 
   from(table: string) {
